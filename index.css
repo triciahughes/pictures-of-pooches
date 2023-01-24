@@ -31,3 +31,11 @@ button {
     width: auto;
     height: fit-content;
 }
+
+img:hover {
+    cursor: pointer;
+}
+
+button:hover {
+    cursor: pointer;
+}
