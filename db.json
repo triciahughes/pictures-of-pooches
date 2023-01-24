@@ -1,0 +1,22 @@
+{
+  "likes": [
+    {
+      "id": 1,
+      "likes": 0
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "content": "s'cute!"
+    },
+    {
+      "id": 2,
+      "content": "wowzers!"
+    },
+    {
+      "id": 3,
+      "content": "awwwwww"
+    }
+  ]
+}
