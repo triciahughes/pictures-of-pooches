@@ -2,7 +2,7 @@
   "likes": [
     {
       "id": 1,
-      "likes": 0
+      "amount": 0
     }
   ],
   "comments": [

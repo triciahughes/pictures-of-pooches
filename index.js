@@ -12,6 +12,7 @@ const likeButton = document.getElementById("like-button");
 const likeParagraph = document.createElement("p");
 likeParagraph.id = "like-count";
 let count = 0;
+likeParagraph.textContent = `${count} Likes`
 
 const div = document.getElementById("button-container");
 div.append(likeParagraph);
@@ -19,11 +20,10 @@ div.append(likeParagraph);
 likeButton.addEventListener("click", (event) => {
   console.log("yay");
   const likes = ++count;
-  if (count === 0) {
-    likeParagraph.textContent = "0 Likes";
-  } else if (count === 1) {
-    likeParagraph.textContent = `1 Like`;
-  } else {
+  if (count === 1) {
+    likeParagraph.textContent = "1 Like";
+  } 
+   else {
     likeParagraph.textContent = `${likes} Likes`;
   }
 });
@@ -60,3 +60,5 @@ fetch(commentsUrl)
   .then((commentData) => {
     commentData.forEach(renderComments);
   })
+
+  
