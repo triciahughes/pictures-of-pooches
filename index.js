@@ -32,10 +32,31 @@ const form = document.getElementById("comments");
 
 form.addEventListener("submit", (event) => {
   event.preventDefault();
-  const comments = document.getElementById("comments-container");
   const newComment = event.target["new-comment-description"].value;
   const newP = document.createElement("p");
   newP.textContent = newComment;
   comments.append(newP);
   form.reset();
 });
+
+//moved Tricia's const comments variable into global scope so I could snag it for renderComments
+
+const comments = document.getElementById("comments-container");
+
+//fetch comments from db.json
+//render initial comments from db.json file in new p in 'comments-container' div
+
+
+const commentsUrl = "http://localhost:3000/comments"
+
+function renderComments(oneComment) {
+  const newP = document.createElement('p');
+  newP.textContent = oneComment.content;
+  comments.append(newP);
+};
+
+fetch(commentsUrl)
+  .then((response) => response.json())
+  .then((commentData) => {
+    commentData.forEach(renderComments);
+  })
