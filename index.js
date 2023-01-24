@@ -29,12 +29,13 @@ likeButton.addEventListener("click", (event) => {
 });
 
 const form = document.getElementById("comments");
+
 form.addEventListener("submit", (event) => {
   event.preventDefault();
   const comments = document.getElementById("comments-container");
   const newComment = event.target["new-comment-description"].value;
   const newP = document.createElement("p");
   newP.textContent = newComment;
-  comments.appendChild(newP);
+  comments.append(newP);
   form.reset();
 });
