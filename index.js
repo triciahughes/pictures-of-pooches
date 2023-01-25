@@ -4,29 +4,42 @@ const dogImage = document.getElementById("dog-image");
 fetch(BASE_URL)
   .then((response) => response.json())
   .then((img) => {
-    dogImage.src = img.message;
+    dogImgUrl = img.message;
+    dogImage.src = dogImgUrl;
+
+    /////// Likes Fetch & Event ///////
+    fetch(LIKES_URL)
+      .then((response) => response.json())
+      .then((data) => {
+        data.forEach((like) => {
+          let likeAmount = like.amount;
+          likeParagraph.textContent = `${likeAmount} Likes`;
+          likeBtn.addEventListener("click", (event) => {
+            likeAmount = likeAmount + 1;
+            likeParagraph.textContent = likeAmount;
+            if (likeAmount === 1) {
+              likeParagraph.textContent = `${likeAmount} Like`;
+            } else {
+              likeParagraph.textContent = `${likeAmount} Likes`;
+            }
+
+            const likesObj = {
+              amount: likeAmount,
+              dogURL: dogImgUrl,
+            };
+
+            fetch(LIKES_URL, {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+                Accept: "application/json",
+              },
+              body: JSON.stringify(likesObj),
+            });
+          });
+        });
+      });
   });
-
-const likeButton = document.getElementById("like-button");
-
-const likeParagraph = document.createElement("p");
-likeParagraph.id = "like-count";
-let count = 0;
-likeParagraph.textContent = `${count} Likes`
-
-const div = document.getElementById("button-container");
-div.append(likeParagraph);
-
-likeButton.addEventListener("click", (event) => {
-  console.log("yay");
-  const likes = ++count;
-  if (count === 1) {
-    likeParagraph.textContent = "1 Like";
-  } 
-   else {
-    likeParagraph.textContent = `${likes} Likes`;
-  }
-});
 
 const form = document.getElementById("comments");
 
@@ -46,19 +59,23 @@ const comments = document.getElementById("comments-container");
 //fetch comments from db.json
 //render initial comments from db.json file in new p in 'comments-container' div
 
-
-const commentsUrl = "http://localhost:3000/comments"
+const commentsUrl = "http://localhost:3000/comments";
 
 function renderComments(oneComment) {
-  const newP = document.createElement('p');
+  const newP = document.createElement("p");
   newP.textContent = oneComment.content;
   comments.append(newP);
-};
+}
 
 fetch(commentsUrl)
   .then((response) => response.json())
   .then((commentData) => {
     commentData.forEach(renderComments);
-  })
+  });
 
-  
+const LIKES_URL = "http://localhost:3000/likes";
+const likeBtn = document.getElementById("like-button");
+const div = document.getElementById("button-container");
+const likeParagraph = document.createElement("p");
+likeParagraph.id = "like-count";
+div.append(likeParagraph);
