@@ -4,7 +4,31 @@ const dogImage = document.getElementById("dog-image");
 fetch(BASE_URL)
   .then((response) => response.json())
   .then((img) => {
-    dogImage.src = img.message;
+    console.log(img)
+    dogImgUrl = img.message;
+    dogImage.src = dogImgUrl
+    
+    //dogImage.src = img.message;
+
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+      const newComment = event.target["new-comment-description"].value;
+      const commentObject = {
+        content: newComment,
+        dogImgUrl: dogImgUrl
+      }
+      comments.append(newComment);
+      form.reset();
+    
+      fetch(commentsUrl, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Accept: 'application/json'
+        },
+        body: JSON.stringify(commentObject)
+      })
+    });
   });
 
 const likeButton = document.getElementById("like-button");
@@ -30,14 +54,25 @@ likeButton.addEventListener("click", (event) => {
 
 const form = document.getElementById("comments");
 
-form.addEventListener("submit", (event) => {
-  event.preventDefault();
-  const newComment = event.target["new-comment-description"].value;
-  const newP = document.createElement("p");
-  newP.textContent = newComment;
-  comments.append(newP);
-  form.reset();
-});
+// form.addEventListener("submit", (event) => {
+//   event.preventDefault();
+//   const newComment = event.target["new-comment-description"].value;
+//   const commentObject = {
+//     content: newComment
+
+//   }
+//   comments.append(newComment);
+//   form.reset();
+
+//   fetch(commentsUrl, {
+//     method: 'POST',
+//     headers: {
+//       'Content-Type': 'application/json',
+//       Accept: 'application/json'
+//     },
+//     body: JSON.stringify(commentObject)
+//   })
+// });
 
 //moved Tricia's const comments variable into global scope so I could snag it for renderComments
 
