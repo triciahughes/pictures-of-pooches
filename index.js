@@ -7,6 +7,28 @@ fetch(BASE_URL)
     dogImgUrl = img.message;
     dogImage.src = dogImgUrl;
 
+    /////// Comments Fetch & Event //////
+
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+      const newComment = event.target["new-comment-description"].value;
+      const commentObject = {
+        content: newComment,
+        dogImgUrl: dogImgUrl,
+      };
+      comments.append(newComment);
+      form.reset();
+
+      fetch(commentsUrl, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify(commentObject),
+      });
+    });
+
     /////// Likes Fetch & Event ///////
     fetch(LIKES_URL)
       .then((response) => response.json())
