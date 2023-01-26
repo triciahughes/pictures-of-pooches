@@ -101,3 +101,18 @@ const div = document.getElementById("button-container");
 const likeParagraph = document.createElement("p");
 likeParagraph.id = "like-count";
 div.append(likeParagraph);
+
+fetch(LIKES_URL)
+  .then((response) => response.json())
+  .then((urls) => {
+    urls.forEach((url) => {
+      let likeAmount = 0;
+      const urlObjs = url.dogURL;
+      if (urlObjs === urlObjs) {
+        likeAmount = ++likeAmount;
+        console.log("like amount ", likeAmount);
+        // console.log("dog url ", typeof url.dogURL);
+        //console.log(urlObjs === urlObjs);
+      } else console.loh("hi");
+    });
+  });
