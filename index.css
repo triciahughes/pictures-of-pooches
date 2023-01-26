@@ -39,3 +39,24 @@ img:hover {
 button:hover {
     cursor: pointer;
 }
+
+#txt {
+    text-align: center;
+    border: 5px solid rgb(99, 86, 158) ;
+    width: fit-content;
+    margin: auto;
+    color: antiquewhite;
+    border-radius: 5px;
+}
+
+#like-count {
+    text-align: center;
+    color: antiquewhite;
+}
+
+#comments-container {
+    text-align: center;
+    color: antiquewhite;
+    border: 5px solid rgb(63, 33, 194);
+    background-color: rgb(63, 33, 194);
+}

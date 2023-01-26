@@ -102,6 +102,17 @@ const likeParagraph = document.createElement("p");
 likeParagraph.id = "like-count";
 div.append(likeParagraph);
 
+const pic = document.getElementById("dog-image");
+const container = document.getElementById("image-container");
+pic.addEventListener("mouseover", (e) => {
+  if (!document.getElementById("txt")) {
+    const pets = document.createElement("div");
+    pets.textContent = "Click on the picture!";
+    pets.setAttribute("id", "txt");
+    container.append(pets);
+  }
+});
+
 fetch(LIKES_URL)
   .then((response) => response.json())
   .then((urls) => {
