@@ -74,6 +74,7 @@ form.addEventListener("submit", (event) => {
   form.reset();
 });
 
+<<<<<<< HEAD
 //moved Tricia's const comments variable into global scope so I could snag it for renderComments
 
 const comments = document.getElementById("comments-container");
@@ -101,3 +102,6 @@ const div = document.getElementById("button-container");
 const likeParagraph = document.createElement("p");
 likeParagraph.id = "like-count";
 div.append(likeParagraph);
+=======
+
+>>>>>>> 8c6d4ae (no changes)
