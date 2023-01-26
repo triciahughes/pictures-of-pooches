@@ -75,6 +75,7 @@ form.addEventListener("submit", (event) => {
 });
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 //moved Tricia's const comments variable into global scope so I could snag it for renderComments
 
 const comments = document.getElementById("comments-container");
@@ -105,3 +106,19 @@ div.append(likeParagraph);
 =======
 
 >>>>>>> 8c6d4ae (no changes)
+=======
+const pic = document.getElementById("dog-image")
+const container = document.getElementById("image-container")
+pic.addEventListener("mouseover", (e) => {
+  
+    if(!(document.getElementById("txt"))){
+      const pets = document.createElement("div")
+      pets.textContent = "Click on the picture!"
+      pets.setAttribute('id','txt')
+      container.append(pets)
+    }
+
+
+
+})
+>>>>>>> ffa43f0 (added mouseover event)
